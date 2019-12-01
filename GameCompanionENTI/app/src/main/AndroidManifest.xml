@@ -9,6 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Signin" android:label="@string/title_activity_sign_in" android:parentActivityName=".MainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.gamecompanionenti.MainActivity"/>
+
+        </activity>
+        <activity android:name=".Signup" android:label="@string/title_activity_sign_up" android:parentActivityName=".MainActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.gamecompanionenti.MainActivity"/>
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

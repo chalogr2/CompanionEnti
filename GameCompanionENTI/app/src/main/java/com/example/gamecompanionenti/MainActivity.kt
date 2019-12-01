@@ -1,7 +1,9 @@
 package com.example.gamecompanionenti
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +20,10 @@ class MainActivity : AppCompatActivity() {
                     val fragment = SupportFragment()
                     fragmentTransaction.replace(R.id.fragment_container, fragment)
                     fragmentTransaction.commit()
+                    val context = this
+                    if(FirebaseAuth.getInstance().currentUser == null) {
+                        startActivity(Intent(context, Signup::class.java))
+                    }
                 }
                 R.id.menu_news -> {
                     val fragmentManager = supportFragmentManager
@@ -32,6 +38,10 @@ class MainActivity : AppCompatActivity() {
                     val fragment = ProfileFragment()
                     fragmentTransaction.replace(R.id.fragment_container, fragment)
                     fragmentTransaction.commit()
+                    val context = this
+                    if(FirebaseAuth.getInstance().currentUser == null) {
+                        startActivity(Intent(context, Signup::class.java))
+                    }
                 }
             }
 
