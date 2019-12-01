@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Game Companion ENTI</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_chat">Support</string>
+    <string name="menu_news">News Feed</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_profile">Profile</string>
+    <string name="hello_news_feed">News Feed</string>
+    <string name="hello_support">Support</string>
+</resources>

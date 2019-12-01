@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "750112807384",
+    "firebase_url": "https://gamecompanionenti.firebaseio.com",
+    "project_id": "gamecompanionenti",
+    "storage_bucket": "gamecompanionenti.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750112807384:android:628a2ddec60974a8b8faad",
+        "android_client_info": {
+          "package_name": "com.example.gamecompanionenti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "750112807384-t90mt5mjvao58ddnkv004naql3a5517p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMfoPrBXMBfAtpfAlJh9gGdOr-PxEQ3Ag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "750112807384-t90mt5mjvao58ddnkv004naql3a5517p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
