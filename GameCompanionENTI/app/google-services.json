@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "750112807384-ua6359gvnehvq6hr1v7b4l5tiatnpkmp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gamecompanionenti",
+            "certificate_hash": "2d242208146f05378aef223115bb909f7dc9de9e"
+          }
+        },
+        {
           "client_id": "750112807384-t90mt5mjvao58ddnkv004naql3a5517p.apps.googleusercontent.com",
           "client_type": 3
         }

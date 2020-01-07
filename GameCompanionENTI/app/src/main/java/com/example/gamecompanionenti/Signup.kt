@@ -41,21 +41,27 @@ class Signup : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("SignUpActivity", "createUserWithEmail:success")
                         val user = auth.currentUser
-                        val context3 = this;
+                        val username = (findViewById<EditText>(R.id.editText)).text.toString()
+                        val userModel = UserModel(user?.uid, username, user?.email)
+                        val context3 = this
                         val db = FirebaseFirestore.getInstance()
                         val uUser = hashMapOf(
-                            "username" to (findViewById<EditText>(R.id.editText)).text.toString()
+                            "username" to username
                         )
-                        db.collection("Users")
-                            .add(uUser)
-                            .addOnSuccessListener { documentReference ->
-                                Log.d("SignUpActivity", "Username added: ${documentReference.id}")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w("SignUpActivity", "Error adding username", e)
+                        db.collection("users")
+                            .document((user?.uid).toString())
+                            .set(userModel)
+                            .addOnSuccessListener {
+                                // Sign Up Completed!
+                                // TODO: Tell user everything was fine and finish!
+
+                            }.addOnFailureListener {
+                                // TODO: Handle failure
+                                Log.e("SignUp", (it.message).toString())
                             }
 
-                        startActivity(Intent(context3, MainActivity::class.java))
+
+                        finish()
 
 
                     } else {
@@ -71,7 +77,7 @@ class Signup : AppCompatActivity() {
         btn2.setOnClickListener{
             val context2 = this
             startActivity(Intent(context2, Signin::class.java))
-
+            finish()
         }
     }
 }
