@@ -1,5 +1,7 @@
 package com.example.gamecompanionenti
 
+import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,47 +9,34 @@ import android.widget.TextView
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_message.view.*
+import kotlinx.android.synthetic.main.layout_news.view.*
 
-class RecyclerAdapter (val mesg: Message): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class RecyclerAdapter (var list:List<Message>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
-    private var items: List<Message> = ArrayList()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
-        return MessageViewHolder(
-            LayoutInflater.from(parent?.context).inflate(R.layout.layout_message,parent,false)
-        )
+    class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
+        val senderr = itemView.senderS
+        val messager = itemView.messageS
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
-        when(holder){
-            is MessageViewHolder ->{
-                holder.bind(items[position])
-            }
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent?.context)
+        val cellForRow = layoutInflater.inflate(R.layout.layout_message,parent,false)
+        return ViewHolder(cellForRow)
     }
 
     override fun getItemCount(): Int {
-
-        return  items.size
+        return list.count()
     }
 
-    fun submitList(msgList: List<Message>){
 
-        items = msgList
-    }
-
-    class MessageViewHolder constructor(
-        itemView: View
-    ):RecyclerView.ViewHolder(itemView){
-        private val messageSender:TextView = itemView.senderS
-        private val messageMessage:TextView = itemView.messageS
-
-        fun bind(msg:Message){
-            messageSender.text=msg.userName
-            messageMessage.text=msg.text
-        }
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val ctx = holder.itemView.context
+        val msg1 = list[position].text
+        val msg2 = list[position].userName
+        holder?.itemView?.messageS?.text = msg1
+        holder?.itemView?.senderS?.text = msg2
+        holder?.itemView?.messageS?.setBackgroundColor(Color.LTGRAY)
+        holder?.itemView?.senderS?.setBackgroundColor(ctx.getColor( R.color.colorAccent))
     }
 
 }

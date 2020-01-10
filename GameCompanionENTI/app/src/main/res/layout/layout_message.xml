@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:text="name"
-        android:textStyle="bold"
-        android:id="@+id/senderS"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:text="message"
         android:id="@+id/messageS"
-        android:layout_below="@id/senderS"/>
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/senderS"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toRightOf="@id/chatpic"
+        android:text="message" />
+
+    <TextView
+        android:id="@+id/senderS"
+        android:layout_width="280dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="0dp"
+        android:layout_toRightOf="@id/chatpic"
+        android:text="name"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/chatpic"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+
+        app:srcCompat="@drawable/ic_profile" />
 
 
 </RelativeLayout>

@@ -9,19 +9,45 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".Signin" android:label="@string/title_activity_sign_in" android:parentActivityName=".MainActivity"
-            >
+        <activity
+            android:name=".EventOneActivity"
+            android:label="Event One"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.gamecompanionenti.MainActivity"/>
-
+                android:value="com.example.gamecompanionenti.MainActivity" />
         </activity>
-        <activity android:name=".Signup" android:label="@string/title_activity_sign_up" android:parentActivityName=".MainActivity"
-            >
+        <activity
+            android:name=".EventTwoActivity"
+            android:label="Event Two"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.gamecompanionenti.MainActivity"/>
+                android:value="com.example.gamecompanionenti.MainActivity" />
+        </activity>
+        <activity
+            android:name=".EventThreeActivity"
+            android:label="Event Three"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.gamecompanionenti.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Signin"
+            android:label="@string/title_activity_sign_in"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.gamecompanionenti.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Signup"
+            android:label="@string/title_activity_sign_up"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.gamecompanionenti.MainActivity" />
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -29,11 +55,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        </activity> <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-1349063276552219~5908933426"/>
+            android:value="ca-app-pub-1349063276552219~5908933426" />
     </application>
 
 </manifest>

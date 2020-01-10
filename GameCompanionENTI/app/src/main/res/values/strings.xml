@@ -11,4 +11,5 @@
     <string name="hello_profile">Profile</string>
     <string name="hello_news_feed">News Feed</string>
     <string name="hello_support">Support (Chat)</string>
+    <string name="super_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut venenatis turpis. Aliquam sit amet ultricies ex, vel pulvinar dui. Donec volutpat libero diam, eu imperdiet erat volutpat non. Maecenas pellentesque quam sed ex eleifend rhoncus. Etiam convallis porta augue at faucibus. Morbi elit diam, aliquet quis arcu finibus, molestie facilisis sem. Aenean nec fringilla nibh. Aliquam aliquam velit at malesuada feugiat.</string>
 </resources>

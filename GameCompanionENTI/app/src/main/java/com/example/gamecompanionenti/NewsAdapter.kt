@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.layout_news.view.*
 class NewsAdapter(): RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     val backgrounds = listOf(R.drawable.mainimage4,R.drawable.mainimage2, R.drawable.mainimage1)
-    val linksto = listOf(Signin::class.java,Signin::class.java,Signin::class.java)
+    val linksto = listOf(EventOneActivity::class.java,EventTwoActivity::class.java,EventThreeActivity::class.java)
 
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
         val button = itemView.menuButton

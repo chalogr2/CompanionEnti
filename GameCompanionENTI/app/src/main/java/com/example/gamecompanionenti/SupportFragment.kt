@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_support.*
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.core.FirestoreClient
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -42,13 +44,22 @@ class SupportFragment : Fragment() {
 
         val db = FirebaseFirestore.getInstance()
 
-        db.collection("messages").get()
+        val msgRecycle: RecyclerView? = view?.findViewById(R.id.myRecycler1)
+        msgRecycle?.layoutManager = LinearLayoutManager(this.context)
+        //msgRecycle?.adapter = RecyclerAdapter()
+        var listy:ArrayList<Message> = arrayListOf<Message>()
+
+        db.collection("messages")
+            .orderBy("createdAt")
+            .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     task.result?.forEach { documentSnapshot ->
                         val message = documentSnapshot.toObject(Message::class.java)
                         //assign it to recycleview
+                        listy.add(message)
                     }
+                    msgRecycle?.adapter = RecyclerAdapter(listy.toList())
 
                 }
 
@@ -56,13 +67,18 @@ class SupportFragment : Fragment() {
                 button_send.setOnClickListener {
 
                     val userText = edit_support.text.toString()
-                    val userMessage = Message(text = userText, createdAt = Date(), userID = FirebaseAuth.getInstance().currentUser?.uid)
+                    val userMessage = Message(text = userText, createdAt = Date(), userID = FirebaseAuth.getInstance().currentUser?.uid, userName = "Sample Username" )
                     db.collection("messages").add(userMessage).addOnSuccessListener {
 
 
                     }.addOnFailureListener {
                         Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG)
                             .show()
+
+                    }.addOnSuccessListener {
+                        listy.add(userMessage)
+                        msgRecycle?.adapter = RecyclerAdapter(listy.toList())
+                        msgRecycle?.adapter?.notifyDataSetChanged()
 
                     }
                 }
