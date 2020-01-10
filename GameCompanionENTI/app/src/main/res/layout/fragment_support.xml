@@ -4,10 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SupportFragment">
+    tools:context=".SupportFragment"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myRecycler1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         ></androidx.recyclerview.widget.RecyclerView>
@@ -16,7 +21,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="38dp"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
@@ -28,6 +33,7 @@
             android:layout_centerVertical="true"
             android:layout_marginBottom="50dp"
             android:text="SEND"
+            android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/button3"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +41,7 @@
 
         <EditText
             android:id="@+id/edit_support"
-            android:layout_width="315dp"
+            android:layout_width="243dp"
             android:layout_height="match_parent"
             android:hint="Type message here"
             android:inputType="text"
