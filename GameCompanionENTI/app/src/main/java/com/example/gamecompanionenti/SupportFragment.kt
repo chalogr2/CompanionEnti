@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_support.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.core.FirestoreClient
+import kotlinx.android.synthetic.main.fragment_profile.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -67,20 +68,35 @@ class SupportFragment : Fragment() {
                 button_send.setOnClickListener {
 
                     val userText = edit_support.text.toString()
-                    val userMessage = Message(text = userText, createdAt = Date(), userID = FirebaseAuth.getInstance().currentUser?.uid, userName = "Sample Username" )
-                    db.collection("messages").add(userMessage).addOnSuccessListener {
+                    //val userName =
+                    val user = FirebaseAuth.getInstance().currentUser
+                    FirebaseFirestore.getInstance()
+                        .collection("users")
+                        .document((user?.uid).toString())
+                        .get()
+                        .addOnSuccessListener {documentSnapshot->
+                            val usuario = documentSnapshot.toObject(com.example.gamecompanionenti.UserModel::class.java)
+
+                            val userMessage = Message(text = userText, createdAt = Date(), userID = FirebaseAuth.getInstance().currentUser?.uid, userName = usuario?.username )
+                            db.collection("messages").add(userMessage).addOnSuccessListener {
 
 
-                    }.addOnFailureListener {
-                        Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG)
-                            .show()
+                            }.addOnFailureListener {
+                                Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG)
+                                    .show()
 
-                    }.addOnSuccessListener {
-                        listy.add(userMessage)
-                        msgRecycle?.adapter = RecyclerAdapter(listy.toList())
-                        msgRecycle?.adapter?.notifyDataSetChanged()
+                            }.addOnSuccessListener {
+                                listy.add(userMessage)
+                                msgRecycle?.adapter = RecyclerAdapter(listy.toList())
+                                msgRecycle?.adapter?.notifyDataSetChanged()
 
-                    }
+                            }
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(requireContext(),it.localizedMessage,Toast.LENGTH_LONG).show()
+                        }
+
+
                 }
             }
     }

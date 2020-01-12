@@ -15,4 +15,8 @@
         android:id="@+id/menu_profile"
         android:title="@string/menu_profile"
         android:icon="@drawable/ic_profile" />
+    <item
+        android:id="@+id/menu_streams"
+        android:title="Streams"
+        android:icon="@drawable/ic_streams" />
 </menu>

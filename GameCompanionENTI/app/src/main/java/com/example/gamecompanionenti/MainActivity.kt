@@ -53,6 +53,13 @@ class MainActivity : AppCompatActivity() {
                         startActivity(Intent(context, Signup::class.java))
                     }
                 }
+                R.id.menu_streams -> {
+                    val fragmentManager = supportFragmentManager
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    val fragment = StreamsFragmnet()
+                    fragmentTransaction.replace(R.id.fragment_container, fragment)
+                    fragmentTransaction.commit()
+                }
             }
 
             true

@@ -1,11 +1,14 @@
 package com.example.gamecompanionenti
 
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -32,6 +35,7 @@ class ProfileFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         initUI()
+        handlePopup()
     }
 
     private fun initUI(){
@@ -62,6 +66,18 @@ class ProfileFragment : Fragment() {
                     Toast.makeText(requireContext(),it.localizedMessage,Toast.LENGTH_LONG).show()
                 }
         }
+    }
+
+    private fun handlePopup(){
+        usersettings.setOnClickListener {
+            val builder = AlertDialog.Builder(view?.context)
+            val builderView = layoutInflater.inflate(R.layout.custom_dialog,null)
+            builder.setView(builderView)
+            builder.setCancelable(false)
+            builder.setPositiveButton("OK",{ dialogInterface: DialogInterface, i: Int -> })
+            builder.show()
+        }
+
     }
 
 
