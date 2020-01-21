@@ -7,9 +7,16 @@
     android:paddingTop="24dp"
     android:paddingBottom="24dp">
 
+    <ImageView
+        android:id="@+id/menuBImage"
+        android:elevation="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="240dp" />
+
     <Button
         android:id="@+id/menuButton"
         android:layout_width="match_parent"
-        android:layout_height="240dp" />
+        android:layout_height="240dp"
+        android:elevation="1dp"/>
 
 </RelativeLayout>

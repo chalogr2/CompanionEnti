@@ -8,10 +8,22 @@
     android:paddingBottom="8dp">
 
     <TextView
-        android:id="@+id/messageS"
+        android:id="@+id/dateS"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/senderS"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toRightOf="@id/chatpic"
+        android:text="date"
+        android:textStyle="italic"
+        android:textSize="5pt"/>
+
+    <TextView
+        android:id="@+id/messageS"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dateS"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
         android:layout_toRightOf="@id/chatpic"

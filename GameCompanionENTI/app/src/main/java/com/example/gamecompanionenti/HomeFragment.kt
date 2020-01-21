@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_support.*
 
@@ -40,8 +41,27 @@ class HomeFragment : Fragment() {
 
         val newsRecycle: RecyclerView? = view?.findViewById(R.id.newsRecycle)
         newsRecycle?.layoutManager = LinearLayoutManager(this.context)
-        newsRecycle?.adapter = NewsAdapter()
 
+        val db = FirebaseFirestore.getInstance()
+        var listSy:ArrayList<News> = arrayListOf<News>()
+
+        db.collection("news")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    task.result?.forEach { documentSnapshot ->
+                        val newsNode = documentSnapshot.toObject(News::class.java)
+                        //assign it to recycleview
+                        listSy.add(newsNode)
+                    }
+                    newsRecycle?.adapter = NewsAdapter(listSy.toList())
+
+                }
+            }
+
+        //val newsRecycle: RecyclerView? = view?.findViewById(R.id.newsRecycle)
+        //newsRecycle?.layoutManager = LinearLayoutManager(this.context)
+        //newsRecycle?.adapter = NewsAdapter(listSy)
 
     }
 

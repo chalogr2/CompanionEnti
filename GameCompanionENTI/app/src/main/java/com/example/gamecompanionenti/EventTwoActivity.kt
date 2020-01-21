@@ -1,3 +1,5 @@
+//deprecated
+
 package com.example.gamecompanionenti
 
 import androidx.appcompat.app.AppCompatActivity

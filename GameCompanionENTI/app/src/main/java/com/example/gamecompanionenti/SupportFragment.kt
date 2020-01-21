@@ -46,7 +46,7 @@ class SupportFragment : Fragment() {
         val db = FirebaseFirestore.getInstance()
 
         val msgRecycle: RecyclerView? = view?.findViewById(R.id.myRecycler1)
-        msgRecycle?.layoutManager = LinearLayoutManager(this.context)
+        msgRecycle?.layoutManager = LinearLayoutManager(this.context) as RecyclerView.LayoutManager?
         //msgRecycle?.adapter = RecyclerAdapter()
         var listy:ArrayList<Message> = arrayListOf<Message>()
 
@@ -68,34 +68,51 @@ class SupportFragment : Fragment() {
                 button_send.setOnClickListener {
 
                     val userText = edit_support.text.toString()
-                    //val userName =
-                    val user = FirebaseAuth.getInstance().currentUser
-                    FirebaseFirestore.getInstance()
-                        .collection("users")
-                        .document((user?.uid).toString())
-                        .get()
-                        .addOnSuccessListener {documentSnapshot->
-                            val usuario = documentSnapshot.toObject(com.example.gamecompanionenti.UserModel::class.java)
+                    if(userText.trim().length>0) {
+                        //val userName =
+                        val user = FirebaseAuth.getInstance().currentUser
+                        FirebaseFirestore.getInstance()
+                            .collection("users")
+                            .document((user?.uid).toString())
+                            .get()
+                            .addOnSuccessListener { documentSnapshot ->
+                                val usuario =
+                                    documentSnapshot.toObject(com.example.gamecompanionenti.UserModel::class.java)
 
-                            val userMessage = Message(text = userText, createdAt = Date(), userID = FirebaseAuth.getInstance().currentUser?.uid, userName = usuario?.username )
-                            db.collection("messages").add(userMessage).addOnSuccessListener {
+                                val userMessage = Message(
+                                    text = userText,
+                                    createdAt = Date(),
+                                    userID = FirebaseAuth.getInstance().currentUser?.uid,
+                                    userName = usuario?.username,
+                                    imageUrl = usuario?.avatarUrl
+                                )
+                                db.collection("messages").add(userMessage).addOnSuccessListener {
 
 
-                            }.addOnFailureListener {
-                                Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_LONG)
-                                    .show()
+                                }.addOnFailureListener {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        it.localizedMessage,
+                                        Toast.LENGTH_LONG
+                                    )
+                                        .show()
 
-                            }.addOnSuccessListener {
-                                listy.add(userMessage)
-                                msgRecycle?.adapter = RecyclerAdapter(listy.toList())
-                                msgRecycle?.adapter?.notifyDataSetChanged()
+                                }.addOnSuccessListener {
+                                    edit_support.setText("")
+                                    listy.add(userMessage)
+                                    msgRecycle?.adapter = RecyclerAdapter(listy.toList())
+                                    msgRecycle?.adapter?.notifyDataSetChanged()
 
+                                }
                             }
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(requireContext(),it.localizedMessage,Toast.LENGTH_LONG).show()
-                        }
-
+                            .addOnFailureListener {
+                                Toast.makeText(
+                                    requireContext(),
+                                    it.localizedMessage,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                    }
 
                 }
             }
