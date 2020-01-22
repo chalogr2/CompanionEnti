@@ -1,6 +1,7 @@
 package com.example.gamecompanionenti
 
 
+import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_event_one.*
 import kotlinx.android.synthetic.main.fragment_streams_fragmnet.*
@@ -25,6 +28,8 @@ import java.net.URL
  */
 class StreamsFragmnet : Fragment() {
 
+    val lista:MutableList<String?> = arrayListOf<String?>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,13 +41,18 @@ class StreamsFragmnet : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        CoroutineScope(IO).launch{
-            getStreams()
-        }
+        getStreams(this.context)
 
     }
 
-    private suspend fun getStreams(){
+    private  fun getStreams( context:Context?){
+
+        val streams2:MutableList<StreamModel> = arrayListOf<StreamModel>()
+
+        val strmRecycle: RecyclerView? = view?.findViewById(R.id.streamsRecycle)
+        strmRecycle?.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
+        Log.w("StreamsFragmnet",streams2.size.toString())
+        strmRecycle?.adapter = StreamsAdapter(streams2.toList(),lista.toList())
 
         TwitchApiService.endpoints.getStreams(gameid = "369588").enqueue(object : retrofit2.Callback<StreamResponse>{
 
@@ -56,14 +66,17 @@ class StreamsFragmnet : Fragment() {
                     //All good
                     val streams = response.body()?.results?: emptyList()
 
-                    CoroutineScope(IO).launch{
-                        getGamesFromStream(streams)
-                    }
+                    /*val strmRecycle: RecyclerView? = view?.findViewById(R.id.streamsRecycle)
+                    strmRecycle?.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?*/
 
-                    val imageUri = streams[0].getSmallThumbnailUrl()
+                    //val stream:Stream = Stream()
+
+                    /*val imageUri = streams[0].getSmallThumbnailUrl()
                     val ivBasicImage: ImageView = image1Twitch as ImageView
                     Picasso.with(context).load(imageUri).into(ivBasicImage)
                     video1Title.text = streams[0].title
+                    stream.imageUrl = imageUri
+                    stream.title = streams[0]
 
                     val imageUri2 = streams[1].getSmallThumbnailUrl()
                     val ivBasicImage2: ImageView = image2Twitch as ImageView
@@ -73,8 +86,16 @@ class StreamsFragmnet : Fragment() {
                     val imageUri3 = streams[2].getSmallThumbnailUrl()
                     val ivBasicImage3: ImageView = image3Twitch as ImageView
                     Picasso.with(context).load(imageUri3).into(ivBasicImage3)
-                    video3Title.text = streams[2].title
+                    video3Title.text = streams[2].title*/
 
+                    getGamesFromStream(streams,strmRecycle)
+
+                    (strmRecycle?.adapter as StreamsAdapter)?.updateList(streams.toList())
+                    /*val strmRecycle: RecyclerView? = view?.findViewById(R.id.streamsRecycle)
+                    strmRecycle?.layoutManager = LinearLayoutManager(context)
+                    strmRecycle?.adapter = StreamsAdapter(streams,lista.toList())*/
+
+                    //strmRecycle?.adapter = StreamsAdapter(streams,lista.toList())
 
                     Log.i("StreamsFragmnet",streams.toString() )
                 }else
@@ -84,9 +105,13 @@ class StreamsFragmnet : Fragment() {
                 }
             }
         })
+
+
+
     }
 
-    private suspend fun getGamesFromStream(streams:List<StreamModel>){
+
+    private  fun getGamesFromStream(streams:List<StreamModel>,strmRecycler: RecyclerView?){
 
         val ids = streams.map{it.gameId ?:""}
         TwitchApiService.endpoints.getGames(gameIds = ids).enqueue(object:retrofit2.Callback<GameResponse> {
@@ -97,9 +122,15 @@ class StreamsFragmnet : Fragment() {
             override fun onResponse(call: Call<GameResponse>, response: Response<GameResponse>) {
                 if(response.isSuccessful) {
                     val games = response.body()?.results?: emptyList()
-                    video1Game.text = games[0].name
+                    /*video1Game.text = games[0].name
                     video2Game.text = games[0].name
-                    video3Game.text = games[0].name
+                    video3Game.text = games[0].name*/
+                    lista.add(games[0].name)
+                    lista.add(games[0].name)
+                    lista.add(games[0].name)
+                    lista.add(games[0].name)
+                    lista.add(games[0].name)
+                    (strmRecycler?.adapter as StreamsAdapter)?.updateGameList(lista.toList())
                 }
             }
         })

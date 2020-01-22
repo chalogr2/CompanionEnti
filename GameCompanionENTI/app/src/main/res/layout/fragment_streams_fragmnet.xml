@@ -11,120 +11,27 @@
     android:paddingTop="24dp"
     android:paddingBottom="24dp">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/streamsRecycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="30dp"
+        />
+
     <!-- TODO: Update blank fragment layout -->
-
     <TextView
-        android:id="@+id/video1Title"
+        android:id="@+id/streamsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="82dp"
-        android:text=""
-        android:textSize="15dp"
+        android:layout_marginTop="24dp"
+        android:text="Top Streams"
+        android:textSize="28dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image1Twitch"
-        app:layout_constraintVertical_bias="0.011" />
-    <TextView
-        android:id="@+id/video1Game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="82dp"
-        android:text=""
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/video1Title"
-        app:layout_constraintVertical_bias="0.011" />
-
-    <ImageView
-        android:id="@+id/image1Twitch"
-        android:layout_width="240dp"
-        android:layout_height="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.011"
-        app:srcCompat="@drawable/cliaprt" />
-
-    <TextView
-        android:id="@+id/video2Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="82dp"
-        android:text=""
-        android:textStyle="bold"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image2Twitch"
-        app:layout_constraintVertical_bias="0.011" />
-    <TextView
-        android:id="@+id/video2Game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="82dp"
-        android:text=""
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/video2Title"
-        app:layout_constraintVertical_bias="0.011" />
-
-    <ImageView
-        android:id="@+id/image2Twitch"
-        android:layout_width="240dp"
-        android:layout_height="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/video1Game"
-        app:layout_constraintVertical_bias="0.011"
-        app:srcCompat="@drawable/cliaprt" />
-
-    <TextView
-        android:id="@+id/video3Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="82dp"
-        android:text=""
-        android:textStyle="bold"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image3Twitch"
-        app:layout_constraintVertical_bias="0.011" />
-    <TextView
-        android:id="@+id/video3Game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="82dp"
-        android:text=""
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/video3Title"
-        app:layout_constraintVertical_bias="0.011" />
-
-    <ImageView
-        android:id="@+id/image3Twitch"
-        android:layout_width="240dp"
-        android:layout_height="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/video2Game"
-        app:layout_constraintVertical_bias="0.011"
-        app:srcCompat="@drawable/cliaprt" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp">
+
+    <ImageView
+        android:id="@+id/streamImage"
+        android:elevation="1dp"
+        android:layout_width="250dp"
+        android:layout_height="150dp" />
+
+    <TextView
+        android:id="@+id/streamTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:layout_below="@id/streamImage"
+        android:textSize="8pt"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/streamGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:layout_below="@id/streamTitle"
+        android:textSize="6pt" />
+
+    <TextView
+        android:id="@+id/streamUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:layout_below="@id/streamGame"
+        android:textSize="6pt" />
+
+</RelativeLayout>

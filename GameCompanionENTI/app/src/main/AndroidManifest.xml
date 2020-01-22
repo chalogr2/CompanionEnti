@@ -33,22 +33,6 @@
                 android:value="com.example.gamecompanionenti.MainActivity" />
         </activity>
         <activity
-            android:name=".EventTwoActivity"
-            android:label="Event Two"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.gamecompanionenti.MainActivity" />
-        </activity>
-        <activity
-            android:name=".EventThreeActivity"
-            android:label="Event Three"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.gamecompanionenti.MainActivity" />
-        </activity>
-        <activity
             android:name=".Signin"
             android:label="@string/title_activity_sign_in"
             android:parentActivityName=".MainActivity">
