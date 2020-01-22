@@ -19,6 +19,11 @@ interface TwitchApiService{
     @GET("games")
     fun getGames(@Query("id")gameIds: List<String>? = null):retrofit2.Call<GameResponse>
 
+    @Headers("Client-ID: vl66hntkqvny64c1llc54dlpllpppr")
+    @GET("users")
+    fun getUsers(@Query("id")gameIds: List<String>? = null):retrofit2.Call<TwitchUserResponse>
+
+
 
     //create https client
     companion object{

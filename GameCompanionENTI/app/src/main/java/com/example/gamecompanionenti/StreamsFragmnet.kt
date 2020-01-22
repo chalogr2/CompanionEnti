@@ -48,11 +48,12 @@ class StreamsFragmnet : Fragment() {
     private  fun getStreams( context:Context?){
 
         val streams2:MutableList<StreamModel> = arrayListOf<StreamModel>()
+        val emptyDetails:List<String?> = arrayListOf<String?>()
 
         val strmRecycle: RecyclerView? = view?.findViewById(R.id.streamsRecycle)
         strmRecycle?.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
         Log.w("StreamsFragmnet",streams2.size.toString())
-        strmRecycle?.adapter = StreamsAdapter(streams2.toList(),lista.toList())
+        strmRecycle?.adapter = StreamsAdapter(streams2.toList(),lista.toList(),emptyDetails.toList())
 
         TwitchApiService.endpoints.getStreams(gameid = "369588").enqueue(object : retrofit2.Callback<StreamResponse>{
 
@@ -89,6 +90,7 @@ class StreamsFragmnet : Fragment() {
                     video3Title.text = streams[2].title*/
 
                     getGamesFromStream(streams,strmRecycle)
+                    getUserFromStream(streams,strmRecycle)
 
                     (strmRecycle?.adapter as StreamsAdapter)?.updateList(streams.toList())
                     /*val strmRecycle: RecyclerView? = view?.findViewById(R.id.streamsRecycle)
@@ -114,6 +116,7 @@ class StreamsFragmnet : Fragment() {
     private  fun getGamesFromStream(streams:List<StreamModel>,strmRecycler: RecyclerView?){
 
         val ids = streams.map{it.gameId ?:""}
+
         TwitchApiService.endpoints.getGames(gameIds = ids).enqueue(object:retrofit2.Callback<GameResponse> {
             override fun onFailure(call: Call<GameResponse>, t: Throwable) {
                 Log.w("StreamsFragmnet",t)
@@ -133,6 +136,33 @@ class StreamsFragmnet : Fragment() {
                     (strmRecycler?.adapter as StreamsAdapter)?.updateGameList(lista.toList())
                 }
             }
+        })
+    }
+
+    private fun getUserFromStream(streams:List<StreamModel>,strmRecycler: RecyclerView?){
+
+        val ids = streams.map{it.userId ?:""}
+        val details:MutableList<String?> = arrayListOf<String?>()
+
+        TwitchApiService.endpoints.getUsers(gameIds = ids).enqueue(object:retrofit2.Callback<TwitchUserResponse> {
+            override fun onFailure(call: Call<TwitchUserResponse>, t: Throwable) {
+                Log.w("StreamsFragmnet",t)
+            }
+
+            override fun onResponse(
+                call: Call<TwitchUserResponse>,
+                response: Response<TwitchUserResponse>
+            ) {
+                val users = response.body()?.results?: emptyList()
+                details.add(users[0].description)
+                details.add(users[1].description)
+                details.add(users[2].description)
+                details.add(users[3].description)
+                details.add(users[4].description)
+
+                (strmRecycler?.adapter as StreamsAdapter)?.updateDetailList(details.toList())
+            }
+
         })
     }
 

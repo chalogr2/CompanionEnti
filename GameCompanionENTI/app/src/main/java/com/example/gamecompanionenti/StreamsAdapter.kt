@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.layout_streams.view.*
 import kotlinx.android.synthetic.main.layout_news.view.*
 
 
-class StreamsAdapter(var list:List<StreamModel>, var gameList:List<String?>): RecyclerView.Adapter<StreamsAdapter.ViewHolder>() {
+class StreamsAdapter(var list:List<StreamModel>, var gameList:List<String?>, var detailList:List<String?>): RecyclerView.Adapter<StreamsAdapter.ViewHolder>() {
 
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
         val button = itemView.menuButton
@@ -37,6 +37,9 @@ class StreamsAdapter(var list:List<StreamModel>, var gameList:List<String?>): Re
             holder?.view?.streamTitle?.text = list[position]?.title
             if(gameList.isNotEmpty()) {
                 holder?.view?.streamGame?.text = gameList[position]?.toString()
+            }
+            if(detailList.isNotEmpty()){
+                holder?.view?.streamUserInfo?.text = detailList[position]?.toString()
             }
             val imgurlt = list[position].getSmallThumbnailUrl()
             val image = holder?.view?.streamImage
@@ -67,6 +70,11 @@ class StreamsAdapter(var list:List<StreamModel>, var gameList:List<String?>): Re
     public fun updateGameList( gameListy:List<String?>){
 
         gameList = gameListy
+        this!!.notifyDataSetChanged()
+    }
+
+    public fun updateDetailList(detailListy:List<String?>){
+        detailList = detailListy
         this!!.notifyDataSetChanged()
     }
 
