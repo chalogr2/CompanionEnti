@@ -16,6 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:text="User settings not yet implemented"/>
+        android:text="@string/popup"/>
 
 </RelativeLayout>
